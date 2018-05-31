@@ -5,6 +5,15 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'
 
 const BASE_URL = 'https://min-api.cryptocompare.com'
 
+const coins = [
+  { key: 'BTC', name: 'Bitcoin' },
+  { key: 'ETH', name: 'Ethereum' },
+  { key: 'BCH', name: 'Bitcoin Cash' },
+  { key: 'XRP', name: 'Ripple' },
+  { key: 'LTC', name: 'Litecoin' },
+  { key: 'IOT', name: 'IOTA' }
+]
+
 const Container = styled.div`
   text-align: center;
   font-family: Pacifico;
@@ -115,8 +124,7 @@ export default class App extends React.Component {
             value={this.state.currency}
             onChange={event => this.handleChangeCurrency(event.target.value)}
           >
-            <option value="BTC">Bitcoin</option>
-            <option value="ETH">Ethereum</option>
+            {coins.map(c => <option value={c.key}>{c.name}</option>)}
           </Select>
 
           <Preposition>on</Preposition>
@@ -137,7 +145,7 @@ export default class App extends React.Component {
 
         <BarChart
           style={{margin: '0 auto'}}
-          width={600}
+          width={300}
           height={300}
           data={chartData}
         >
